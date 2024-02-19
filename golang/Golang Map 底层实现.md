@@ -1,0 +1,1 @@
+Golang 中 map 的底层实现是一个散列表，因此实现 map 的过程实际上就是实现 散表的过程。在这个散列表中，主要出现的结构体有两个，一个叫 hmap(a  header for a go map)，一个叫 bmap(a bucket for a Go map，通常叫其 bucket)。

@@ -1,0 +1,13 @@
+
+-  RWMutex 是单写多读锁，该锁可以加多个读锁或者一个写锁 
+-  读锁占用的情况下会阻止写，不会阻止读，多个 Goroutine 可以同时获取 读锁 
+-  写锁会阻止其他 Goroutine（无论读和写）进来，整个锁由该 Goroutine  独占
+-  适用于读多写少的场景 
+-  RWMutex 类型变量的零值是一个未锁定状态的互斥锁 
+-  RWMutex 在首次被使用之后就不能再被拷贝 
+-  RWMutex 的读锁或写锁在未锁定状态，解锁操作都会引发 panic 
+-  RWMutex 的一个写锁去锁定临界区的共享资源，如果临界区的共享资源已 被（读锁或写锁）锁定，这个写锁操作的 goroutine 将被阻塞直到解锁 
+-  RWMutex 的读锁不要用于递归调用，比较容易产生死锁 
+-  RWMutex 的锁定状态与特定的 goroutine 没有关联。一个 goroutine 可 以 RLock（Lock），另一个 goroutine 可以 RUnlock（Unlock） 
+-  写锁被解锁后，所有因操作锁定读锁而被阻塞的 goroutine 会被唤醒，并 都可以成功锁定读锁 
+-  读锁被解锁后，在没有被其他读锁锁定的前提下，所有因操作锁定写锁而 被阻塞的 Goroutine，其中等待时间最长的一个 Goroutine 会被唤醒

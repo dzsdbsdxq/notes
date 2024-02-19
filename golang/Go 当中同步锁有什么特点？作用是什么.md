@@ -1,0 +1,1 @@
+当一个Goroutine（协程）获得了Mutex后，其他Goroutine（协程）就只能乖乖的等待，除非该Goroutine释放了该Mutex。RWMutex在读锁占用的情况下，会阻止写，但不阻止读 RWMutex。 在写锁占用情况下，会阻止任何其他Goroutine（无论读和写）进来，整个锁相当于由该Goroutine独占 同步锁的作用是保证资源在使用时的独有性，不会因为并发而导致数据错乱，保证系统的稳定性。
